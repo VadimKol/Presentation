@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+			.flex {
+				display: flex;
+				justify-content: space-between;
+				gap: 10px;
+			}
+			.flex-img {
+				display: flex;
+				justify-content: space-between;
+				gap: 100px;
+			}
+			.grid-img {
+				display: flex;
+				justify-content: space-around;
+			}
+/* 			.font {
+				font-size: 25px;
+			} */
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+					<h2>CSS Grid Layout</h2>
+					<h3>(aka “Grid” or “CSS Grid”)</h3>
+					<img class="r-stretch" src="grid.png">
+				</section>
+
+				<section>	
+					<p>
+						CSS Grid is a two-dimensional grid-based layout system that, compared to any web layout system of the past, completely changes the way we design user interfaces.
+				  </p>
+			</section>
+
+							<section>	
+								<h3 data-id="code-title">Grid Container</h3>
+								<p>The element on which display: grid is applied. It’s the direct parent of all the grid items. In this example container is the grid container.</p>
+								<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+									<div class="container">
+										<div class="item item-1"> </div>
+										<div class="item item-2"> </div>
+										<div class="item item-3"> </div>
+									</div>
+								</script>
+								</code></pre>
+						</section>
+
+						<section>	
+							<h3 data-id="code-title">Grid Item</h3>
+							<p>The children (i.e. direct descendants) of the grid container. Here the item elements are grid items.</p>
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								<div class="container">
+									<div class="item"> </div>
+									<div class="item"> </div>
+									<div class="item"> </div>
+								</div>
+							</script>
+							</code></pre>
+					</section>
+
+					<section>	
+						<h3>Grid Line</h3>
+						<p>The dividing lines that make up the structure of the grid. Here the yellow line is an example of a column grid line.</p>
+						<img class="r-stretch" src="https://css-tricks.com/wp-content/uploads/2018/11/terms-grid-line.svg">
+					</section>
+
+					<section>	
+						<h3>Grid Cell</h3>
+						<p>The space between two adjacent row and two adjacent column grid lines. It’s a single “unit” of the grid.</p>
+						<img class="r-stretch" src="https://css-tricks.com/wp-content/uploads/2018/11/terms-grid-cell.svg">
+					</section>
+
+					<section>	
+						<h3>Grid Track</h3>
+						<p>The space between two adjacent grid lines. Here’s the grid track between the second and third-row grid lines.</p>
+						<img class="r-stretch" src="https://css-tricks.com/wp-content/uploads/2021/08/terms-grid-track.svg">
+					</section>
+
+					<section>	
+						<h3>Grid Area</h3>
+						<p>The total space surrounded by four grid lines. A grid area may be composed of any number of grid cells.</p>
+						<img class="r-stretch" src="https://css-tricks.com/wp-content/uploads/2018/11/terms-grid-area.svg">
+					</section>
+
+					<section>	
+						<h3>Fixed and flexible track sizes</h3>
+						<p>We can create a grid with fixed track sizes – using pixels. We can also create a grid using flexible sizes with percentages or with the "fr" unit designed for this purpose. The new fr unit represents a fraction of the available space in the grid container.</p>
+					</section>
+
+					<section>	
+						<h4>HTML</h4>
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+							<div class="wrapper">
+								<div>One</div>
+								<div>Two</div>
+								<div>Three</div>
+								<div>Four</div>
+								<div>Five</div>
+							</div>
+						</script>
+						</code></pre>
+						<h4>CSS</h4>
+						<div class="flex">
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								.wrapper {
+									display: grid;
+									grid-template-columns: 200px 200px 200px;
+								}
+							</script>
+							</code></pre>
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								.wrapper {
+									display: grid;
+									grid-template-columns: 1fr 1fr 1fr;
+								}
+							</script>
+							</code></pre>
+						</div>
+						<div class="flex-img">
+							<img class="r-stretch" src="px.jpg" width="500px">
+							<img class="r-stretch" src="fr.jpg" width="500px">
+						</div>
+					</section>
+
+					<section>	
+						<h3>repeat() notation</h3>
+						<p>Large grids with many tracks can use the repeat() notation, to repeat all or a section of the track listing.</p>
+						</code></pre>
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+							.wrapper {
+								display: grid;
+								grid-template-columns: repeat(3, 1fr);
+							}
+						</script>
+						</code></pre>
+					</section>
+
+					<section>	
+						<h3>Positioning items against lines</h3>
+						<p class="r-fit-text">When placing an item, we target the line – rather than the track. Working from left to right, the first item is placed against column line 1, and spans to column line 4, which in our case is the far-right line on the grid. It begins at row line 1 and ends at row line 3, therefore spanning two row tracks.</p>
+						<div class="flex">
+							<h4>CSS</h4>
+							<h4>HTML</h4>
+						</div>
+						<div class="flex">
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								.wrapper {
+									display: grid;
+									grid-template-columns: repeat(3, 1fr);
+								}
+								.box1 {
+									grid-column-start: 1;
+									grid-column-end: 4;
+									grid-row-start: 1;
+									grid-row-end: 3;
+								}
+								.box2 {
+									grid-column-start: 1;
+									grid-row-start: 3;
+									grid-row-end: 5;
+								}
+							</script>
+							</code></pre>
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								<div class="wrapper">
+									<div class="box1">One</div>
+									<div class="box2">Two</div>
+									<div class="box3">Three</div>
+									<div class="box4">Four</div>
+									<div class="box5">Five</div>
+								</div>
+							</script>
+							</code></pre>
+						</div>
+					</section>
+					
+					<section>	
+						<img class="r-stretch" src="lines.jpg">
+					</section>
+
+					<section>	
+						<h3>Gutters</h3>
+						<p>Gutters between grid cells can be created using the column-gap and row-gap properties, or the shorthand gap. In the below example, I am creating a 10-pixel gap between columns and a "1em" gap between rows.</p>
+						</code></pre>
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+							.wrapper {
+								display: grid;
+								grid-template-columns: repeat(3, 1fr);
+								column-gap: 10px;
+								row-gap: 1em;
+							}
+						</script>
+						</code></pre>
+						<img class="r-stretch" src="gap.jpg" width="500px">
+					</section>
+
+					<section>	
+						<h3>justify-content and align-content</h3>
+						<p>Sometimes the total size of your grid might be less than the size of its grid container. This property aligns the grid along the row axis (as opposed to align-content which aligns the grid along the column axis).</p>
+						</code></pre>
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+							.container {
+								justify-content: start | end | center | stretch | space-around | space-between | space-evenly;    
+								align-content: start | end | center | stretch | space-around | space-between | space-evenly;    
+							}
+						</script>
+						</code></pre>
+					</section>
+
+					<section>	
+						<div class="flex">
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								.container {
+									justify-content: start;
+								}
+							</script>
+							</code></pre>
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								.container {
+									align-content: start;
+								}
+							</script>
+							</code></pre>
+						</div>
+						<div class="grid-img">
+							<img class="r-stretch" src="start.jpg" width="200px">
+							<img class="r-stretch" src="start_2.jpg" width="200px">
+						</div>
+						<div class="flex">
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								.container {
+									justify-content: space-between;    
+								}
+							</script>
+							</code></pre>
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								.container {
+									align-content: space-between;   
+								}
+							</script>
+							</code></pre>
+						</div>
+						<div class="grid-img">
+							<img class="r-stretch" src="space_between.jpg" width="200px">
+							<img class="r-stretch" src="space_between_2.jpg" width="200px">
+						</div>
+					</section>
+
+					<section>	
+						<h3>Grid template areas</h3>
+						<p>When you use CSS grid layout, you always have lines, and this can be a straightforward way to place items on your grid. However, there is an alternate method to use for positioning items on the grid which you can use alone or in combination with line-based placement.</p>
+					</section>
+
+					<section>	
+						<h3>The grid-area property</h3>
+						<p class="r-fit-text">This is the property that can take as a value all four of the lines used to position a grid area. What we are doing here when defining all four lines, is defining the area by specifying the lines that enclose that area. We can also define an area by giving it a name and then specify the location of that area in the value of the grid-template-areas property.</p>
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+							.box1 {
+								grid-area: 1 / 1 / 4 / 2;
+							}
+						</script>
+						</code></pre>
+						<img class="r-stretch" src="area.jpg" width="200px">
+					</section>
+
+
+					<section>	
+						<div class="flex">
+							<h4>CSS</h4>
+							<h4>HTML</h4>
+						</div>
+						<div class="flex">
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								.header {
+									grid-area: hd;
+								}
+								.footer {
+									grid-area: ft;
+								}
+								.content {
+									grid-area: main;
+								}
+								.sidebar {
+									grid-area: sd;
+								}
+								.wrapper {
+									display: grid;
+									grid-template-columns: repeat(9, 1fr);
+									grid-template-areas:
+										"hd hd hd hd   hd   hd   hd   hd   hd"
+										"sd sd sd main main main main main main"
+										"ft ft ft ft   ft   ft   ft   ft   ft";
+								}
+							</script>
+							</code></pre>
+							<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+								<div class="wrapper">
+									<div class="header">Header</div>
+									<div class="sidebar">Sidebar</div>
+									<div class="content">Content</div>
+									<div class="footer">Footer</div>
+								</div>
+							</script>
+							</code></pre>
+						</div>
+					</section>
+					
+					
+					<section>	
+						<img class="r-stretch" src="template_area.jpg">
+					</section>
+
+					<section>	
+						<h3>Leaving a grid cell empty</h3>
+						<p class="r-fit-text">You can leave grid cells empty with this method of layout. To leave a cell empty use the full stop character ".". </p>
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+							.wrapper {
+								display: grid;
+								grid-template-columns: repeat(9, 1fr);
+								grid-template-areas:
+									"hd hd hd hd   hd   hd   hd   hd   hd"
+									"sd sd sd main main main main main main"
+									".  .  .  ft   ft   ft   ft   ft   ft";
+							}
+						</script>
+						</code></pre>
+						<img class="r-stretch" src="empty_cells.jpg" width="200px">
+					</section>
+
+					<section>	
+						<h3>Spanning multiple cells</h3>
+						<p class="r-fit-text">You can however span rows just as easily as columns. For example we could make our sidebar span down to the end of the footer by replacing the "." with "sd". The value of grid-template-areas must show a complete grid, otherwise it is invalid (and the property is ignored).</p>
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+							.wrapper {
+								display: grid;
+								grid-template-columns: repeat(9, 1fr);
+								grid-template-areas:
+									"hd hd hd hd   hd   hd   hd   hd   hd"
+									"sd sd sd main main main main main main"
+									"sd sd sd  ft  ft   ft   ft   ft   ft";
+							}
+						</script>
+						</code></pre>
+						<img class="r-stretch" src="span_area.jpg" width="200px">
+					</section>
+
+					<section>	
+						<h3 class="r-fit-text">Redefining the grid using media queries</h3>
+						<p class="r-fit-text">As our layout is now contained in one part of the CSS, this makes it very easy to make changes at different breakpoints. You can do this by redefining the grid, the position of items on the grid, or both at once.</p>
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers><script type="text/template">
+							@media (min-width: 500px) {
+								.wrapper {
+									grid-template-columns: repeat(9, 1fr);
+									grid-template-areas:
+										"hd hd hd hd   hd   hd   hd   hd   hd"
+										"sd sd sd main main main main main main"
+										"sd sd sd  ft  ft   ft   ft   ft   ft";
+								}
+							}
+							@media (min-width: 700px) {
+								.wrapper {
+									grid-template-areas:
+										"hd hd hd   hd   hd   hd   hd   hd hd"
+										"sd sd main main main main main ft ft";
+								}
+							}
+						</script>
+						</code></pre>
+					</section>
+					
+					<section>	
+						<img class="r-stretch" src="media_area.jpg">
+					</section>
+
+					<section>	
+						<h3 class="r-fit-text">Thanks for watching</h3>
+						<img class="r-stretch" src="grid_2.webp">
+					</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
